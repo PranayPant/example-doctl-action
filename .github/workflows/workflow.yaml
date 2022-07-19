@@ -27,4 +27,7 @@ jobs:
         run: doctl compute droplet get nginx
 
       - name: Get all web server drolets
-        run: doctl compute droplet list --tag-name web-server
+        run: doctl compute droplet list --tag-name web-server -o json > web_servers.json
+
+      - name: Process web servers list
+        run: echo web_server.json
