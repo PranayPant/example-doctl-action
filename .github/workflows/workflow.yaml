@@ -27,4 +27,7 @@ jobs:
         run: doctl compute droplet get nginx -o json
 
       - name: Get all web server drolets
-        run: doctl compute droplet list --tag-name web-server --format "ID,Name,PublicIPv4,PrivateIPv4"
+        run: doctl compute droplet list --tag-name web-server --format "ID,Name,PublicIPv4,PrivateIPv4" > web_servers.txt
+
+      - name: Process web servers list
+        run: cat web_servers.txt
