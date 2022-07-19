@@ -18,16 +18,13 @@ jobs:
       - name: Checkout main
         uses: actions/checkout@v2
 
-      - name: Update SHA
-        run: echo $GITHUB_SHA > $GITHUB_WORKSPACE/site/_meta
-
-      - name: Build container image
-        run: docker build -t registry.digitalocean.com/asb/static-example:$(echo $GITHUB_SHA | head -c7) .
-
       - name: Install doctl
         uses: digitalocean/action-doctl@v2
         with:
           token: ${{ secrets.DIGITALOCEAN_ACCESS_TOKEN }}
 
-      - name: Get account
-        run: doctl account get
+      - name: Get reverse proxy drolet
+        run: doctl compute droplet get nginx
+
+      - name: Get all web server drolets
+        run: doctl compute droplet list --tag-name web-server
