@@ -14,6 +14,8 @@ jobs:
   build:
     name: Build, push, and deploy
     runs-on: ubuntu-latest
+    env:
+      vpc_id: 8b2459ae-a292-450a-84b8-7a31372b9264
     steps:
       - name: Checkout main
         uses: actions/checkout@v2
