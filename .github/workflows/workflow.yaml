@@ -37,4 +37,5 @@ jobs:
       - name: Process web servers list
         run: |
           chmod +x ./process_server_ips.sh
-          ./process_server_ips.sh
+          ./process_server_ips.sh servers.in.txt servers.out.txt
+          cat servers.out.txt
